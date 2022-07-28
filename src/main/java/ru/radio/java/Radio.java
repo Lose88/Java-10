@@ -3,6 +3,16 @@ package ru.radio.java;
 public class Radio {
     private int currentStation;
     private int currentVolume;
+    private int stationNumber;
+
+    public Radio() {
+
+    }
+
+    public Radio(int stationNumber) {
+        this.stationNumber = stationNumber;
+    }
+
 
     public int getCurrentStation() {  // геттер
 
@@ -18,8 +28,9 @@ public class Radio {
         if (currentStation < 0) {
             return;
         }
-        if (currentStation > 9) {
+        if (currentStation > stationNumber - 1) {
             return;
+
         }
         this.currentStation = currentStation;
     }
@@ -28,8 +39,8 @@ public class Radio {
         if (currentVolume < 0) {
             return;
         }
-        if (currentVolume > 10) {
-            return;
+        if (currentVolume > 100) {
+            currentVolume = 100;
         }
         this.currentVolume = currentVolume;
     } // сеттер установки звука вручную (1)
@@ -53,22 +64,19 @@ public class Radio {
 
     public void increaseVolume() { //увеличение звука (2)
 
-        if (currentVolume < 10) {
+        if (currentVolume < 100) {
             currentVolume++;
-        }
-        else {
-            currentVolume = 10;
+        } else {
+            currentVolume = 100;
         }
     }
 
     public void decreaseVolume() { //уменьшение звука (3)
 
-
         if (currentVolume > 0) {
             currentVolume--;
-        }
-        else{
-            currentVolume =0;
+        } else {
+            currentVolume = 0;
         }
     }
 
