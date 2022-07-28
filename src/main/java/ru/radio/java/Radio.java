@@ -1,8 +1,8 @@
 package ru.radio.java;
 
 public class Radio {
-    public int currentStation;
-    public int currentVolume;
+    private int currentStation;
+    private int currentVolume;
 
     public int getCurrentStation() {  // геттер
 
@@ -14,69 +14,62 @@ public class Radio {
         return currentVolume;
     } // геттер
 
-    public void setCurrentStation(int newCurrentStation) {  // сеттер установки станции вручную
-        if (newCurrentStation < 0) {
+    public void setCurrentStation(int currentStation) {  // сеттер установки станции вручную
+        if (currentStation < 0) {
             return;
-        }
-        if (newCurrentStation > 9) {
-            return;
-        }
-        currentStation = newCurrentStation;
-    }
-
-    public void setCurrentVolume(int newCurrentVolume) {
-        if (newCurrentVolume < 0) {
-            return;
-        }
-        if (newCurrentVolume > 10) {
-            return;
-        }
-        currentVolume = newCurrentVolume;
-    } // сеттер установки звука вручную (1)
-
-    public int nextStation() { //следующая станция
-
-        if (currentStation >= 0 && currentStation <= 9) {
-            return currentStation + 1;
         }
         if (currentStation > 9) {
-            currentStation = 0;
+            return;
         }
-        return currentStation;
+        this.currentStation = currentStation;
     }
 
-    public int prevStation() { //предыдущая станция
-
-        if (currentStation > 0 && currentStation <= 9) {
-            return currentStation - 1;
-        }
-        if (currentStation == 0) {
-            currentStation = 9;
-        }
-        return currentStation;
-    }
-
-    public int increaseVolume() { //увеличение звука (2)
-
-        if (currentVolume >= 0 && currentVolume <= 10) {
-            return currentVolume + 1;
+    public void setCurrentVolume(int currentVolume) {
+        if (currentVolume < 0) {
+            return;
         }
         if (currentVolume > 10) {
-            currentVolume = 10;
+            return;
         }
-        return currentVolume;
+        this.currentVolume = currentVolume;
+    } // сеттер установки звука вручную (1)
+
+    public void nextStation() { //следующая станция
+        if (currentStation < 9) {
+            currentStation++;
+        } else {
+            currentStation = 0;
+        }
     }
 
-    public int decreaseVolume() { //уменьшение звука (3)
+    public void prevStation() { //предыдущая станция
+        if (currentStation > 0) {
+            currentStation--;
+        } else {
+            currentStation = 9;
+        }
+    }
 
 
-        if (currentVolume > 0 && currentVolume <= 10) {
-            return currentVolume - 1;
+    public void increaseVolume() { //увеличение звука (2)
+
+        if (currentVolume < 10) {
+            currentVolume++;
         }
-        if (currentVolume < 0) {
-            currentVolume = 0;
+        else {
+            currentVolume = 10;
         }
-        return currentVolume;
+    }
+
+    public void decreaseVolume() { //уменьшение звука (3)
+
+
+        if (currentVolume > 0) {
+            currentVolume--;
+        }
+        else{
+            currentVolume =0;
+        }
     }
 
 }
